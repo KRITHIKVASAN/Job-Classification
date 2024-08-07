@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Portal</title>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            {% for link in navigation_links %}
+                <li><a href="{{ url_for(link['url']) }}">{{ link['text'] }}</a></li>
+            {% endfor %}
+        </ul>
+    </nav>
+
+    <h1>Job Listings</h1>
+
+    <!-- Add the search form with the CSRF token -->
+    <form method="POST" action="{{ url_for('search') }}" id="searchForm">
+        {{ form.hidden_tag() }}  <!-- Include the CSRF token -->
+        <input type="text" name="search_query" placeholder="Search job titles">
+        <button type="submit">Search</button>
+    </form>
+
+    <!-- Add a button to go to the create listing page -->
+    <a href="{{ url_for('create_job_listing') }}" class="btn">Create Job Listing</a>
+
+    <div class="categories">
+        {% for category, jobs in jobs_by_category.items() %}
+        <div class="category">
+            <h2><a href="{{ url_for('category', category=category) }}">{{ category }}</a></h2>
+            <ul>
+                {% for job in jobs %}
+                <li><a href="{{ url_for('job_details', index=job.custom_index) }}">{{ job.job_title }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

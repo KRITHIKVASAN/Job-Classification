@@ -1,0 +1,15 @@
+<html>
+<head>
+    <title>Job Portal</title>
+</head>
+<body>
+    <a href="{{ url_for('index') }}">Back to Categories</a>
+    <h1>Jobs in Category: {{ category }}</h1>
+    <ul>
+        {% for job in jobs %}
+            <li><a href="{{ url_for('job_details', index=job.custom_index) }}">{{ job.job_title }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{{ url_for('index') }}">Back to Categories</a>
+</body>
+</html>

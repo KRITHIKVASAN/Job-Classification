@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create New Job Listing</title>
+</head>
+<body>
+    <h1>Create New Job Listing</h1>
+    <form method="POST" id="jobForm">
+        {{ form.hidden_tag() }}
+        <label for="title">Job Title</label>
+        {{ form.title }}
+        <br>
+        <label for="description">Job Description</label>
+        {{ form.description }}
+        <br>
+        <label for="company">Company Name</label>
+        {{ form.company }}
+        <br>
+        <label for="category">Category</label>
+        {{ form.category }}
+        <br>
+        <input type="submit" name="button" value="listing"/>
+        <br>
+        <input type="submit" name="button" value="Classify"/>
+        <br>
+        <label for="classification_result">Classification Result</label>
+        <input type="text" id="classification_result" name="classification_result" value = {{classification_result}} readonly>
+    </form>
+    
+</body>
+</html>
